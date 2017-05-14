@@ -1,13 +1,13 @@
 
-function [Filtered_Motion,Time]=Fourier_Amplitude(x,dt,fmin,fmax)
+function [Filtered_Motion,T]=Filter_Signal_Frequency(x,dt,fmin,fmax)
 
 %Filtered Signal Frequency (SFBMD)
 %--------------------------------------------------------------------------
-% This function filters the signal within a particular frequency f_min and f_max
-% and outputs the filtered signal and time.
+% This function filters the signal within a particular frequency range 
+% f_min and f_max and outputs the filtered signal and time.
 %
 % SYNTAX
-%       Fourier_Amplitude(x,dt,fmin,fmax)
+%       Filter_Signal_Frequency(x,dt,fmin,fmax)
 %
 % INPUT
 %       [x] :      	    signal data [nx1]
@@ -17,27 +17,27 @@ function [Filtered_Motion,Time]=Fourier_Amplitude(x,dt,fmin,fmax)
 %
 % OUTPUT
 %       Filtered_Motion:      Filtered Signal [nx1]
-%       Time:     	          Time [nx1]
+%       T:     	          	  Time [nx1]
 %       Plot:     	          Original and Filtered Signal
 %
 %
 % EXAMPLE
-%   - for a square pulse 
-%	tm   = [[0:0.0001:0.5],[0.5+0.0001:0.0001:0.7],[0.7+0.0001:0.0001:2]];
-%	acc  = [linspace(0,0,(0.5/0.0001)),linspace(0.5,0.5,(0.2/0.0001)+1),linspace(0,0,(1.3/0.0001))];
-%   ky = 0.2;
-%   NewmarkSb (tm,acc,ky);
+%   - for the given signal Input_vx
+%	load Input_vx.txt
+%	x = Input_vx(:,2);
+%	t = Input_vx(:,1);
+%	dt = Input_vx(2)-Input_vx(1);
+%	f_min = 1; % minimum frequency 
+%	f_max = 20;  % maximum frequency   
+%	Filter_Signal_Frequency (x,dt,f_min,f_max);
 %
 %==========================================================================
 %                     2017 By: Sumeet Kumar Sinha (sumeet.kumar507@gmail.com)
 
-
-	%This function calculates the FFT of the function 
-
-	X = x(:,1);
-	dT = dt;        % Time Period 
-	F_s = 1/dT;     % Sampling Frequency
-	L = size(X,1);  % Length of the Signal
+	X = x(:,1);		   % Original Signal
+	dT = dt;           % Time Period 
+	F_s = 1/dT;        % Sampling Frequency
+	L = size(X,1);     % Length of the Signal
 	T = (dt:dt:L*dt)'; 
 
 	New_L =L;
@@ -78,14 +78,14 @@ function [Filtered_Motion,Time]=Fourier_Amplitude(x,dt,fmin,fmax)
 
 	figure ;
 	IFFT_X = ifft(Y);
-	plot(New_T,IFFT_X);
-	hold on;
-	plot(New_T,New_X);
-	title('Signal ');
+	plot(New_T,IFFT_X,'-r','linewidth',2);hold on;
+	plot(New_T,New_X,'-k','linewidth',2);
+	legend('filtered','original');
+	title(strcat('Signal Filtered Between Frequencies [',num2str(fmin),' , ',num2str(fmax),'] Hz'));
 	xlabel('Time [s]');
-	ylabel('X(T)');
+	ylabel('Signal Magnitude x(t)');
 
 	Filtered_Motion = IFFT_X;
-	Time = New_T;
+	t = New_T;
 
 end

@@ -1,6 +1,6 @@
 function NewmarkSb (tm,acc,ky)
 
-%Newmark Sliding Block Analysis (SFBMD)
+%Newmark Sliding Block Analysis (NewmarkSb)
 %--------------------------------------------------------------------------
 % Newmark Sliding Block analysis is a popular method in geotechnical engineering
 % to calculate displacments assuiming rigid plastic behaviour under dynamic loading
