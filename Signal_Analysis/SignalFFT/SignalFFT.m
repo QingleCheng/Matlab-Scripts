@@ -1,5 +1,5 @@
 
-function Fourier_Amplitude(x,dt,Signal_Name)
+function SignalFFT(x,dt,Signal_Name)
 
 %Filtered Signal Frequency (SFBMD)
 %--------------------------------------------------------------------------
@@ -7,7 +7,7 @@ function Fourier_Amplitude(x,dt,Signal_Name)
 % and outputs the filtered signal and time.
 %
 % SYNTAX
-%       Fourier_Amplitude(x,dt,fmin,fmax)
+%       SignalFFT(x,dt,fmin,fmax)
 %
 % INPUT
 %       [x] :      	    signal data [nx1]

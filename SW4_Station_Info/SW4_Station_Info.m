@@ -79,8 +79,8 @@ function [Ux,Uy,Uz,Vx,Vy,Vz,Ax,Ay,Az,T,dt]=SW4_Station_Info(filepath,stationId,p
 		plot(T,Uy,'b-','linewidth',2); hold on;
 		plot(T,Uz,'r-','linewidth',2); hold on;
 		xlabel('Time [s]');
-		ylabel('Displacement [m/s]');
-		legend('V_x','V_y','V_z');
+		ylabel('Displacement [m]');
+		legend('U_x','U_y','U_z');
 		print(strcat(stationId,'_disp_xyz'), '-dpng', '-r300'); %<-Save as PNG with 300 DPI
 
 		figure;
@@ -88,8 +88,8 @@ function [Ux,Uy,Uz,Vx,Vy,Vz,Ax,Ay,Az,T,dt]=SW4_Station_Info(filepath,stationId,p
 		plot(T,Ay,'b-','linewidth',2); hold on;
 		plot(T,Az,'r-','linewidth',2); hold on;
 		xlabel('Time [s]');
-		ylabel('Acceleration [m/s]');
-		legend('V_x','V_y','V_z');
+		ylabel('Acceleration [m/s^2]');
+		legend('A_x','A_y','A_z');
 		print(strcat(stationId,'_accel_xyz'), '-dpng', '-r300'); %<-Save as PNG with 300 DPI
 	end
 end
